@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="left_right">20dp</dimen>
+    <dimen name="Layout_top">75dp</dimen>
+    <dimen name="header_text">10dp</dimen>
+
+    <dimen name="card_width">32dp</dimen>
+
+    <dimen name="card_length">27dp</dimen>
+</resources>
