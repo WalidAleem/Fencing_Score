@@ -1,596 +1,416 @@
-package com.example.android.fencingscore;
+package com.android.example.imnotarobot;
 
-import android.graphics.Color;
-import android.os.PersistableBundle;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.LinearLayout;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+import org.w3c.dom.Text;
+
+public class MainActivity extends AppCompatActivity{
 
     private static final
-    String  MY_TOTAL_SCORE_1 =  "SCORE_1";
-    String  MY_TOTAL_SCORE_2 = "SCORE_2";
-    String  MY_TOUCH_POINT_1 = "TOUCH_1";
-    String MY_TOUCH_POINT_2 = "TOUCH_2";
-    String My_ROW_POINT_1 = "ROW_1";
-    String MY_ROW_POINT_2 = "ROW_2";
-    String MY_RED_1 = "RED_1";
-    String MY_RED_2 = "RED_2";
-    String MY_YELLOW_1 = "YELLOW_1";
-    String MY_YELLOW_2 = "YELLOW_2";
-    String MY_BLACK_1 = "BLACK_1";
-    String MY_BLACK_2 = "BLACK_2";
-    String MY_CURRENT_PAGE = "CURRENT_PAGE";
+    String  MY_SCORE_SCORE = "COUNT";
+
+    String MY_CURRENT_PAGE = "SWITCHER";
 
 
-    int quantity1 = 0;
-    int quantity2 = 0;
-
-    int sumTouchPoint1 = 0;
-    int sumTouchPoint2 = 0;
-
-    int sumRowPoint1 = 0;
-    int sumRowPoint2 = 0;
-
-    int sumRedCardPoint1 = 0;
-    int sumRedCardPoint2 = 0;
-
-
-    int sumYellowCard1 = 0;
-    int sumYellowCard2 = 0;
-
-    int sumBlackCard1 = 0;
-    int sumBlackCard2 = 0;
-
+    int score=0;
+    String rightAnswer = "truth";
     int currentPage;
+
+    boolean checkImageState=false;
+
 
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
 
-        quantity1=savedInstanceState.getInt(MY_TOTAL_SCORE_1);
-        quantity2=savedInstanceState.getInt(MY_TOTAL_SCORE_2);
-        sumTouchPoint1=savedInstanceState.getInt(MY_TOUCH_POINT_1);
-        sumTouchPoint2=savedInstanceState.getInt(MY_TOUCH_POINT_2);
-        sumRowPoint1=savedInstanceState.getInt(My_ROW_POINT_1);
-        sumRowPoint2=savedInstanceState.getInt(MY_ROW_POINT_2);
-        sumRedCardPoint1=savedInstanceState.getInt(MY_RED_1);
-        sumRedCardPoint2=savedInstanceState.getInt(MY_RED_2);
-        sumYellowCard1=savedInstanceState.getInt(MY_YELLOW_1);
-        sumYellowCard2=savedInstanceState.getInt(MY_YELLOW_2);
-        sumBlackCard1=savedInstanceState.getInt(MY_BLACK_1);
-        sumBlackCard2=savedInstanceState.getInt(MY_BLACK_2);
+        rightAnswer = savedInstanceState.getString("WORD");
+        score = savedInstanceState.getInt(MY_SCORE_SCORE);
         currentPage = savedInstanceState.getInt(MY_CURRENT_PAGE);
+        checkImageState =savedInstanceState.getBoolean("IMAGE");
+        switchPages();
 
-        displayScorePlayer1(quantity1);
-        displayScorePlayer2(quantity2);
-        disPlayTouchPointStat1(sumTouchPoint1);
-        disPlayTouchPointStat2(sumTouchPoint2);
-        disPlayRowPointStat1(sumRowPoint1);
-        disPlayRowPointStat2(sumRowPoint2);
-        displayRedCardPoint1(sumRedCardPoint1);
-        displayRedCardPoint2(sumRedCardPoint2);
-        displayYellowCard1(sumYellowCard1);
-        displayYellowCard2(sumYellowCard2);
-        displayBlackCard1(sumBlackCard1);
-        displayBlackCard2(sumBlackCard2);
-
-        saveCurrentPage();
     }
-
 
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putInt("SCORE_1", quantity1 );
-        outState.putInt("SCORE_2", quantity2 );
-        outState.putInt("TOUCH_1", sumTouchPoint1 );
-        outState.putInt("TOUCH_2", sumTouchPoint2);
-        outState.putInt("ROW_1", sumRowPoint1);
-        outState.putInt("ROW_2", sumRowPoint2);
-        outState.putInt("RED_1", sumRedCardPoint1);
-        outState.putInt("RED_2", sumRedCardPoint2);
-        outState.putInt("YELLOW_1", sumYellowCard1);
-        outState.putInt("YELLOW_2", sumYellowCard2);
-        outState.putInt("BLACK_1", sumBlackCard1);
-        outState.putInt("BLACK_2", sumBlackCard2);
-        outState.putInt("CURRENT_PAGE",currentPage);
+        outState.putString("WORD", rightAnswer);
+        outState.putInt(MY_SCORE_SCORE, score);
+        outState.putInt(MY_CURRENT_PAGE, currentPage);
+        outState.putBoolean("IMAGE", checkImageState);
+
 
         super.onSaveInstanceState(outState);
 
+
+
     }
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
-
-
-
-// the following is the method used to calculate the statistics for player 1
-
-
-    /**
-     * this method is called when touch point is clicked to record statistics player 1
-     */
-    public void touchPointStatPlayer1(View view) {
-
-        sumTouchPoint1 = sumTouchPoint1 + 1;
-        disPlayTouchPointStat1(sumTouchPoint1);
-    }
-
-    /**
-     * this method is called when R.O.W. point is clicked to record statistics player 1
-     */
-    public void rowPointStatPlayer1(View view) {
-
-        sumRowPoint1 = sumRowPoint1 + 1;
-        disPlayRowPointStat1(sumRowPoint1);
-    }
-
-    /**
-     * this method is called when Red Card point is clicked to record statistics player 1
-     */
-    public void redCardPointStat1(View view) {
-
-        sumRedCardPoint1 = sumRedCardPoint1 + 1;
-        displayRedCardPoint1(sumRedCardPoint1);
-    }
-
-
-    /**
-     * this method is called when Yellow Card point is clicked to record statistics player 1
-     */
-    public void yellowCardStat1(View view) {
-
-        sumYellowCard1 = sumYellowCard1 + 1;
-        displayYellowCard1(sumYellowCard1);
-    }
-
-    /**
-     * this method is called when Black Card point is clicked to record statistics player 1
-     */
-    public void blackCardPointStat1() {
-
-        sumBlackCard1 = sumBlackCard1 + 1;
-        displayBlackCard1(sumBlackCard1);
 
     }
 
 
-    // the following is the method used to calculate the statistics for player 2
 
 
     /**
-     * this method is called when touch point is clicked to record statistics player 2
+     * this method display the grade of the text inserted in text question
      */
-    public void touchPointStatPlayer2(View view) {
 
-        sumTouchPoint2 = sumTouchPoint2 + 1;
-        disPlayTouchPointStat2(sumTouchPoint2);
-    }
 
-    /**
-     * this method is called when R.O.W. point is clicked to record statistics player 2
+
+     public void submitAnswer  (View view) {
+
+
+         RadioButton radioButtonPage1  = (RadioButton) findViewById(R.id.rb_2_page_1);
+         boolean radioBton1 = radioButtonPage1.isChecked();
+
+         RadioButton radioButtonPage2  = (RadioButton) findViewById(R.id.rb_4_page_2);
+         boolean radioBton2 = radioButtonPage2.isChecked();
+
+         RadioButton radioButtonPage3  = (RadioButton) findViewById(R.id.rb_3_page_3);
+         boolean radioBton3 = radioButtonPage3.isChecked();
+
+
+         RadioButton radioButtonPage4  = (RadioButton) findViewById(R.id.rb_1_page_4);
+         boolean radioBton4 = radioButtonPage4.isChecked();
+
+         RadioButton radioButtonPage5  = (RadioButton) findViewById(R.id.rb_2_page_5);
+         boolean radioBton5 = radioButtonPage5.isChecked();
+
+
+         CheckBox rightPageSelected1 = (CheckBox) findViewById(R.id.checkbox_1);
+         boolean pageSelected1 = rightPageSelected1.isChecked();
+
+         CheckBox rightPageSelected2 = (CheckBox) findViewById(R.id.checkbox_2);
+         boolean pageSelected2 = rightPageSelected2.isChecked();
+
+         int finalScore = calculateScore(radioBton1, radioBton2,radioBton3,radioBton4,radioBton5,pageSelected1, pageSelected2 );
+
+
+         Toast.makeText(MainActivity.this, "Max. grade is 7 and your score is " + score,  Toast.LENGTH_SHORT).show();
+        String reportSummary = createResultReport();
+
+         score=0;
+
+
+
+         Intent intent  = new Intent(Intent.ACTION_SENDTO);
+         intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+         intent.putExtra(Intent.EXTRA_EMAIL, "walidaaleem@gmail.com");
+         intent.putExtra(Intent.EXTRA_SUBJECT,"I'm not a robot quiz report");
+         intent.putExtra(Intent.EXTRA_TEXT,reportSummary);
+                 if (intent.resolveActivity(getPackageManager()) !=null) {
+                     startActivity(intent);
+
+                 }
+     }
+
+
+     private void switchPages () {
+
+         View saveCurrentPage = new View(this);
+
+         if (currentPage == 1) {
+             onClickBackButtonPage2(saveCurrentPage);
+         }
+         if (checkImageState){
+             showQuestion1(saveCurrentPage);
+         }
+
+         if (currentPage == 2) {
+             onClickBackButtonPage3(saveCurrentPage);
+         }
+             if (checkImageState){
+             showQuestion2(saveCurrentPage);
+         }
+
+         if (currentPage == 3) {
+             onClickBackButtonPage4(saveCurrentPage);
+
+           if (checkImageState)
+               showQuestion3(saveCurrentPage);
+           }
+
+         if (currentPage == 4) {
+             onClickBackButtonPage5(saveCurrentPage);
+
+         if (checkImageState)
+             showQuestion4(saveCurrentPage);
+         }
+
+         if (currentPage == 5) {
+             onClickNextButtonPage4(saveCurrentPage);
+          if (checkImageState)
+             showQuestion5(saveCurrentPage);
+         }
+
+         if (currentPage==6){
+         onClickNextButtonPage5(saveCurrentPage);
+
+     }
+
+
+
+
+
+     }
+
+
+    /** this method to display result report
+     *
      */
-    public void rowPointStatPlayer2(View view) {
-
-        sumRowPoint2 = sumRowPoint2 + 1;
-        disPlayRowPointStat2(sumRowPoint2);
-    }
-
-    /**
-     * this method is called when Red Card point is clicked to record statistics player 2
-     */
-    public void redCardPointStatPlayer2(View view) {
-
-        sumRedCardPoint2 = sumRedCardPoint2 + 1;
-        displayRedCardPoint2(sumRedCardPoint2);
-    }
+private String createResultReport (){
 
 
-    /**
-     * this method is called when Yellow Card point is clicked to record statistics player 2
-     */
-    public void yellowCardStatPlayer2(View view) {
+    String resultReport = ("thank you for using I'm Not A robot Quiz");
+     resultReport += "\n your final score is " + score;
 
-        sumYellowCard2 = sumYellowCard2 + 1;
-        displayYellowCard2(sumYellowCard2);
-    }
-
-    /**
-     * this method is called when Black Card point is clicked to record statistics player 2
-     */
-    public void blackCardStatPlayer2() {
-
-        sumBlackCard2 = sumBlackCard2 + 1;
-        displayBlackCard2(sumBlackCard2);
-
-    }
+     return resultReport;
+}
 
 
-    // the following methods are used to calculate the score for player 1//
+/** this method is called to calculate score
+ *
+ */
+    private int calculateScore (boolean radioBtn1, boolean radioBtn2, boolean radioBtn3, boolean radioBtn4,
+                                boolean radioBtn5, boolean checkBox1, boolean checkBox2 ){
 
 
-    /**
-     * this method is called when Touch Point Button player #1 is clicked
-     */
-    public void addTouchPointPlayer1(View view) {
-
-        if (quantity1 == 15) {
-
-            displayWinnerPlayer1("player 1 " + ("Winner"));
-            return;
-        }
-        quantity1 = quantity1 + 1;
-        displayScorePlayer1(quantity1);
-        touchPointStatPlayer1(view);
-    }
-
-
-    /**
-     * this method is called when R.O.W. Point Button player #1 is clicked
-     */
-    public void addRowPointPlayer1(View view) {
-
-        if (quantity1 == 15) {
-
-            displayWinnerPlayer1("player 1 " + ("Winner"));
-            return;
-       }
-        quantity1 = quantity1 + 1;
-        displayScorePlayer1(quantity1);
-        rowPointStatPlayer1(view);
-    }
-
-    /**
-     * this method is called when Red Card Button player # 2 is clicked and the point added to player #1
-     */
-    public void addRedCardPointPlayer1(View view) {
-
-        if (quantity1 == 15) {
-
-            displayWinnerPlayer1("player 1 " + ("Winner"));
-           return;
-        }
-        quantity1 = quantity1 + 1;
-        displayScorePlayer1(quantity1);
-        redCardPointStatPlayer2(view);
-    }
-
-// the following methods are used to calculate the scores for player 2
-
-    /**
-     * this method is called when Touch Point Button Player # 2 is clicked
-     */
-    public void addTouchPointPlayer2(View view) {
-
-        if (quantity2 == 15) {
-
-            displayWinnerPlayer2("player 2 " + ("Winner"));
-            return;
+        if (radioBtn1 == true) {
+            increaseScore(score);
         }
 
-        quantity2 = quantity2 + 1;
-        displayScorePlayer2(quantity2);
-        touchPointStatPlayer2(view);
-
-    }
-
-    /**
-     * this method is called when R.O.W. Point Button Player # 2 is clicked
-     */
-    public void addRowPointPlayer2(View view) {
-
-        if (quantity2 == 15) {
-
-            displayWinnerPlayer2("player 2 " + ("Winner"));
-            return;
+        if (radioBtn2 == true) {
+            increaseScore(score);
         }
-        quantity2 = quantity2 + 1;
-        displayScorePlayer2(quantity2);
-        rowPointStatPlayer2(view);
 
-    }
-
-    /**
-     * this method is called when Red Card Button Player #1 is clicked and point is added to player #2
-     */
-    public void addRedCardPointPlayer2(View view) {
-
-        if (quantity2 == 15) {
-
-            displayWinnerPlayer2("player 2 " + ("Winner"));
-            return;
+        if (radioBtn3 == true) {
+            increaseScore(score);
         }
-        quantity2 = quantity2 + 1;
-        displayScorePlayer2(quantity2);
-        redCardPointStat1(view);
+        if (radioBtn4 == true) {
+            increaseScore(score);
+        }
+        if (radioBtn5 == true) {
+            increaseScore(score);
+        }
+        if (checkBox1==true){
+        }
+        if (checkBox2==true){
+            increaseScore(score);
+        }
 
-    }
+        EditText inputText = (EditText) findViewById(R.id.edit_text);
+        if (inputText.getText().toString().equalsIgnoreCase(rightAnswer)) {
+        increaseScore(score);
+   }
+          return score;
+  }
 
-
-    // the following methods are used to rest the game
-
-    /**
-     * this method is called when reset button is clicked
+    /** this method called to increase score when select or input right answer is done
+     *
      */
-    public void resetAllScores(View reset) {
-
-        quantity1 = 0;
-        quantity2 = 0;
-        displayScorePlayer1(quantity1);
-        displayScorePlayer2(quantity2);
-        clearWinnerPlayer1("Player 1");
-        clearWinnerPlayer2("Player 2");
+public void increaseScore (int numbe) {
+    if (score == 7) {
     }
-
-    /**
-     * this method is called when Black button player # 2 is clicked
-     */
-    public void declareWinnerPlayer1(View view) {
-
-        displayWinnerPlayer1("Player 1 " + "(Winner)");
-        blackCardStatPlayer2();
-
-    }
+    score=score +1;
+}
 
 
-    /**
-     * this method is called when Black Button Player # 1 is clicked
-     */
-    public void declareWinnerPlayer2(View view) {
-
-        displayWinnerPlayer2("Player 2 " + "(winner)");
-        blackCardPointStat1();
-
-    }
+    //the following methods are for switching between pages
 
 
-    /**
-     * this method display score player #1
+    /** this method is  called when resume button is clicked
+     *
      */
 
-    public void displayScorePlayer1(int score) {
+    public void unCheckSelected (View view){
+        RadioGroup radioButtonGroup1 = (RadioGroup) findViewById(R.id.radio_group_1);
+        radioButtonGroup1.clearCheck();
+        currentPage=1;
 
-        TextView scorePlayer1 = (TextView) findViewById(R.id.score_player_1);
-        scorePlayer1.setText(String.valueOf(score));
-    }
+        RadioGroup radioButtonGroup2 = (RadioGroup) findViewById(R.id.radio_group_2);
+        radioButtonGroup2.clearCheck();
 
+        RadioGroup radioButtonGroup3 = (RadioGroup) findViewById(R.id.radio_group_3);
+        radioButtonGroup3.clearCheck();
 
-    /**
-     * this method display score player #2
-     */
+        RadioGroup radioButtonGroup4 = (RadioGroup) findViewById(R.id.radio_group_4);
+        radioButtonGroup4.clearCheck();
 
-    public void displayScorePlayer2(int score) {
+        RadioGroup radioButtonGroup5 = (RadioGroup) findViewById(R.id.radio_group_5);
+        radioButtonGroup5.clearCheck();
 
-        TextView scorePlayer2 = (TextView) findViewById(R.id.score_player_2);
-        scorePlayer2.setText(String.valueOf(score));
+        CheckBox rightPageSelected1 = (CheckBox) findViewById(R.id.checkbox_1);
+        rightPageSelected1.setChecked(false);
 
-    }
+        CheckBox rightPageSelected2 = (CheckBox) findViewById(R.id.checkbox_2);
+        rightPageSelected2.setChecked(false);
 
-    /**
-     * @param message display Player 1 is the winner
-     */
+        View backToPage1 = (View) findViewById(R.id.page_1 );
+        backToPage1.bringToFront();
 
-    public void displayWinnerPlayer1(String message) {
+        hideQuestion1(view);
+        hideQuestion2(view);
+        hideQuestion3(view);
+        hideQuestion4(view);
+        hideQuestion5(view);
 
-        TextView winner = (TextView) findViewById(R.id.player_1_title);
-        winner.setText(message);
-        winner.setTextColor(Color.RED);
+        EditText inputText = (EditText) findViewById(R.id.edit_text);
+        inputText.setText(R.string.word_field);
 
+        score = 0;
     }
 
     /**
-     * @param message display player 2 is the winner
+     * the following methods are called when the Back button is Clicked
      */
-    public void displayWinnerPlayer2(String message) {
-        TextView winner = (TextView) findViewById(R.id.player_2_title);
-        winner.setText(message);
-        winner.setTextColor(Color.RED);
-    }
-
-
-    /**
-     * this method clear the display of the winner player # 1
-     */
-
-    public void clearWinnerPlayer1(String message) {
-        TextView winner = (TextView) findViewById(R.id.player_1_title);
-        winner.setText(message);
-        winner.setTextColor(Color.WHITE);
-    }
-
-    /**
-     * this method clear the display of the winner player # 2
-     */
-
-    public void clearWinnerPlayer2(String message) {
-        TextView winner = (TextView) findViewById(R.id.player_2_title);
-        winner.setText(message);
-        winner.setTextColor(Color.WHITE);
-    }
-
-
-    // the following are the methods used to create java objects for Player 1 stat. text view//
-
-
-    /**
-     * this method is display the touch point statistics player #1
-     */
-
-    public void disPlayTouchPointStat1(int score) {
-
-        TextView touchPointStat = (TextView) findViewById(R.id.touch_point_statistics);
-        touchPointStat.setText(String.valueOf(score));
+    public void onClickBackButtonPage2(View view) {
+        View backToPage1 = (View) findViewById(R.id.page_1);
+        currentPage=1;
+        backToPage1.bringToFront();
 
     }
 
-    /**
-     * this method is display the R.O.W. point statistics player #1
-     */
+    public void onClickBackButtonPage3(View view) {
+        View backToPage2 = (View) findViewById(R.id.page_2);
+        currentPage=2;
+        backToPage2.bringToFront();
 
-    public void disPlayRowPointStat1(int score) {
-
-        TextView rowPointStat1 = (TextView) findViewById(R.id.row_point_statistics);
-        rowPointStat1.setText(String.valueOf(score));
     }
 
-    /**
-     * this method is display the Red Card point statistics player 1
-     */
+    public void onClickBackButtonPage4(View view) {
+        View backToPage3 = (View) findViewById(R.id.page_3);
+        backToPage3.bringToFront();
+        currentPage=3;
+    }
 
-    public void displayRedCardPoint1(int score) {
-
-        TextView redCardPoint1 = (TextView) findViewById(R.id.red_card_point_statistics);
-        redCardPoint1.setText(String.valueOf(score));
+    public void onClickBackButtonPage5(View view) {
+        View backToPage4 = (View) findViewById(R.id.page_4);
+        backToPage4.bringToFront();
+        currentPage=4;
     }
 
 
     /**
-     * this method is displayed the Yellow Card point statistics player 1
+     * this method is called when the next Button is clicked
      */
-
-    public void displayYellowCard1(int score) {
-
-        TextView yellowCardPoint1 = (TextView) findViewById(R.id.yellow_card_statistics);
-        yellowCardPoint1.setText(String.valueOf(score));
-    }
-
-    /**
-     * this method is display the Black Card point player 1
-     */
-
-    public void displayBlackCard1(int score) {
-
-        TextView blackCard1 = (TextView) findViewById(R.id.black_card_statistics);
-        blackCard1.setText(String.valueOf(score));
-    }
-
-
-    // the following are the methods used to create java objects for Player 2 stat. text view//
-
-
-    /**
-     * this method is display the touch point statistics player #2
-     */
-
-    public void disPlayTouchPointStat2(int score) {
-
-        TextView touchPointStat2 = (TextView) findViewById(R.id.touch_point_statistics_2);
-        touchPointStat2.setText(String.valueOf(score));
+    public void onClickNextButtonPage1(View view) {
+        View showPage2 = (View) findViewById(R.id.page_2);
+        showPage2.bringToFront();
+        currentPage=2;
 
     }
 
-    /**
-     * this method is display the R.O.W. point statistics player #2
-     */
-
-    public void disPlayRowPointStat2(int score) {
-
-        TextView rowPointStat2 = (TextView) findViewById(R.id.row_point_statistics_2);
-        rowPointStat2.setText(String.valueOf(score));
-    }
-
-    /**
-     * this method is display the Red Card point statistics player 2
-     */
-
-    public void displayRedCardPoint2(int score) {
-
-        TextView redCardPoint2 = (TextView) findViewById(R.id.red_card_point_statistics_2);
-        redCardPoint2.setText(String.valueOf(score));
-    }
-
-
-    /**
-     * this method is displayed the Yellow Card point statistics player 2
-     */
-
-    public void displayYellowCard2(int score) {
-
-        TextView yellowCardPoint2 = (TextView) findViewById(R.id.yellow_card_statistics_2);
-        yellowCardPoint2.setText(String.valueOf(score));
-    }
-
-    /**
-     * this method is display the Black Card point player 2
-     */
-
-    public void displayBlackCard2(int score) {
-
-        TextView blackCard2 = (TextView) findViewById(R.id.black_card_statistics_2);
-        blackCard2.setText(String.valueOf(score));
-    }
-
-
-    /**
-     * this method display the View Statistics
-     */
-
-    public void disPlayStatistics(View view) {
-
-        View statistics = (View) findViewById(R.id.statistics);
-        statistics.setVisibility(View.VISIBLE);
-
-        View helpPage = (View) findViewById(R.id.help_page);
-        helpPage.setVisibility(View.INVISIBLE);
-        currentPage =1;
-
-    }
-    public void displayHelpPage(View view) {
-        View helpPage = (View) findViewById(R.id.help_page);
-        helpPage.setVisibility(View.VISIBLE);
-
-        LinearLayout threeButtons = findViewById(R.id.three_buttons_layout);
-        threeButtons.bringToFront();
-
-        currentPage = 2;
-    }
-
-
-    /**
-     * this method hide the View Statistics
-     */
-
-    public void displayHome(View view) {
-
-        View statistics = (View) findViewById(R.id.statistics);
-        statistics.setVisibility(View.INVISIBLE);
-
-        View helpPage = (View) findViewById(R.id.help_page);
-        helpPage.setVisibility((View.INVISIBLE));
-
+    public void onClickNextButtonPage2(View view) {
+        View showPage3 = (View) findViewById(R.id.page_3);
+        showPage3.bringToFront();
         currentPage=3;
 
     }
 
-    //this methods to maintain the current page when the device rotate
+    public void onClickNextButtonPage3(View view) {
+        View showPage4 = (View) findViewById(R.id.page_4);
+        showPage4.bringToFront();
+        currentPage=4;
+    }
 
-    /** method is called to maintain the help page and statistics page when the device rotate
-     *
-     */
-    private void saveCurrentPage (){
-        View savePage = new View (this);
+    public void onClickNextButtonPage4(View view) {
+        View showPage5 = (View) findViewById(R.id.page_5);
+        showPage5.bringToFront();
+        currentPage=5;
+    }
 
-        if (currentPage==1) {
-        }  disPlayStatistics(savePage);
+    public void onClickNextButtonPage5(View view) {
+        View showPage6 = (View) findViewById(R.id.page_6);
+        showPage6.bringToFront();
+        currentPage=6;
+    }
 
 
-        if(currentPage==2){
-            displayHelpPage(savePage);
-        }
+//the following is  a method to change the button background
 
-        if(currentPage==3){
-            displayHome(savePage);
-        }
+    public void showQuestion1(View image) {
+        Button question1 = (Button) findViewById(R.id.button_question_1);
+        question1.setVisibility(View.INVISIBLE);
+        checkImageState=true;
+    }
+
+    public void showQuestion2(View image) {
+        Button question2 = (Button) findViewById(R.id.button_question_2);
+        question2.setVisibility(View.INVISIBLE);
+        checkImageState=true;
+
+    }
+
+    public void showQuestion3(View image) {
+        Button question3 = (Button) findViewById(R.id.button_question_3);
+        question3.setVisibility(View.INVISIBLE);
+        checkImageState=true;
+    }
+
+
+    public void showQuestion4(View image) {
+        Button question4 = (Button) findViewById(R.id.button_question_4);
+        question4.setVisibility(View.INVISIBLE);
+        checkImageState=true;
+
+    }
+
+    public void showQuestion5(View image) {
+        Button question5 = (Button) findViewById(R.id.button_question_5);
+        question5.setVisibility(View.INVISIBLE);
+        checkImageState=true;
+
+
+    }
+    public void hideQuestion1(View image) {
+        Button question1 = (Button) findViewById(R.id.button_question_1);
+        question1.setVisibility(View.VISIBLE);
+        checkImageState=false;
+    }
+    public void hideQuestion2(View image) {
+        Button question2 = (Button) findViewById(R.id.button_question_2);
+        question2.setVisibility(View.VISIBLE);
+        checkImageState=false;
+
+    }
+
+    public void hideQuestion3(View image) {
+        Button question3 = (Button) findViewById(R.id.button_question_3);
+        question3.setVisibility(View.VISIBLE);
+        checkImageState=false;
+    }
+
+
+    public void hideQuestion4(View image) {
+        Button question4 = (Button) findViewById(R.id.button_question_4);
+        question4.setVisibility(View.VISIBLE);
+        checkImageState=false;
+
+    }
+
+    public void hideQuestion5(View image) {
+        Button question5 = (Button) findViewById(R.id.button_question_5);
+        question5.setVisibility(View.VISIBLE);
+        checkImageState=false;
 
     }
 }
