@@ -52,8 +52,19 @@
     <string name="header_7">What is Right of Way (R.o.W.)?</string>
 
     <string name="help_text_14"> When both fencer landed a touch at the same time, the referee decide which fencer who had the priority to be awarded the point (i.e. the attacking fencer).</string>
-
-
+    <string name="reset">RESET</string>
+    <string name="home">Home</string>
+    <string name="statistics">statistics</string>
+    <string name="help">help</string>
+    <string name="player_1">Player 1</string>
+    <string name="_0">0</string>
+    <string name="point_touch">+point Touch</string>
+    <string name="point_r_o_w">+point R.O.W.</string>
+    <string name="player_2">Player 2</string>
+    <string name="r_o_w_point">R.O.W. Point</string>
+ <string name="red_card">Red Card</string>
+ <string name="yellow_card">Yellow Card</string>
+ <string name="black_card">Black Card</string>
 
 
 </resources>

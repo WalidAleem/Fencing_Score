@@ -8,6 +8,10 @@
 
     tools:context="com.example.android.fencingscore.MainActivity">
 
+
+    <!--page 1-->
+
+
     <ImageView
 
 
@@ -16,45 +20,49 @@
         android:background="@drawable/en_gard_4"
         android:scaleType="fitStart" />
 
+
     <Button
 
         android:id="@+id/reset_button"
         style="@style/Base.TextAppearance.AppCompat.Widget.Button"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/dimen_50"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
+        android:layout_marginBottom="@dimen/dimen_20"
+        android:layout_marginLeft="@dimen/dimen_40"
+        android:layout_marginRight="@dimen/dimen_40"
         android:background="@drawable/background_12"
         android:onClick="resetAllScores"
-        android:text="RESET"
+        android:text="@string/reset"
         android:textColor="@android:color/background_light"
-        android:textSize="20sp" />
+        android:textSize="@dimen/size_20" />
 
     <LinearLayout
+        android:elevation="@dimen/dimen_2"
+        android:id="@+id/three_buttons_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/reset_button"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dimen_65"
         android:layout_centerHorizontal="true"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
+        android:layout_marginLeft="@dimen/dimen_40"
+        android:layout_marginRight="@dimen/dimen_40"
         android:orientation="horizontal">
 
 
         <Button
-            android:id="@+id/back_button"
+            android:id="@+id/home_button"
             style="@style/Widget.AppCompat.Button"
             android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginRight="@dimen/header_text"
+            android:layout_height="@dimen/dimen_40"
+            android:layout_marginBottom="@dimen/dimen_10"
+            android:layout_marginRight="@dimen/dimen_10"
             android:layout_weight="1"
             android:background="@drawable/background_6"
             android:gravity="center"
-            android:onClick="hideStatistics"
-            android:text="back"
+            android:onClick="displayHome"
+            android:text="@string/home"
             android:textColor="@android:color/background_light" />
 
 
@@ -62,46 +70,44 @@
             android:id="@+id/statistics_button"
             style="@style/Widget.AppCompat.Button"
             android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:layout_marginBottom="10dp"
-
+            android:layout_height="@dimen/dimen_40"
+            android:layout_marginBottom="@dimen/dimen_10"
+            android:layout_marginRight="@dimen/dimen_10"
             android:layout_weight="1"
-
             android:background="@drawable/background_6"
             android:gravity="center"
             android:onClick="disPlayStatistics"
-            android:text="statistics"
+            android:text="@string/statistics"
             android:textColor="@android:color/background_light" />
 
         <Button
             android:id="@+id/help_button"
             style="@style/Widget.AppCompat.Button"
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="@dimen/dimen_40"
             android:layout_marginBottom="10dp"
-            android:layout_marginLeft="@dimen/header_text"
             android:layout_weight="1"
-
             android:background="@drawable/background_6"
             android:gravity="center"
             android:onClick="displayHelpPage"
-            android:text="help"
+            android:text="@string/help"
             android:textColor="@android:color/background_light" />
 
     </LinearLayout>
 
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="@dimen/dimen_30"
         android:gravity="center_horizontal"
         android:orientation="horizontal">
 
 
         <LinearLayout
             android:id="@+id/player_1_layout"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
@@ -112,15 +118,15 @@
 
                 android:id="@+id/player_1_title"
                 style="@android:style/Widget.Holo.Button.Borderless"
-                android:layout_width="120dp"
-                android:layout_height="70dp"
+                android:layout_width="@dimen/dimen_120"
+                android:layout_height="@dimen/dimen_70"
                 android:layout_gravity="center"
-                android:layout_marginTop="35dp"
+                android:layout_marginTop="@dimen/dimen_35"
                 android:fontFamily="serif"
                 android:onClick="declareWinnerPlayer1"
-                android:text="Player 1"
+                android:text="@string/player_1"
                 android:textColor="@android:color/background_light"
-                android:textSize="20sp"
+                android:textSize="@dimen/size_20"
                 android:textStyle="bold" />
 
 
@@ -128,70 +134,69 @@
                 android:id="@+id/score_player_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0"
+                android:text="@string/_0"
                 android:textColor="@android:color/holo_red_light"
-                android:textSize="70sp" />
+                android:textSize="@dimen/size_70" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="@dimen/dimen_20"
                 android:orientation="horizontal">
 
 
                 <Button
-                    android:id="@+id/Touch_point_Button"
-                    android:layout_width="55dp"
-                    android:layout_height="70dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_width="@dimen/dimen_55"
+                    android:layout_height="@dimen/dimen_70"
+                    android:layout_marginRight="@dimen/dimen_10"
                     android:background="@drawable/background_12"
                     android:onClick="addTouchPointPlayer1"
-                    android:text="+point Touch "
+                    android:text="@string/point_touch"
                     android:textAppearance="@android:style/TextAppearance.DeviceDefault.Widget.ActionBar.Menu"
                     android:textColor="@android:color/white"
-                    android:textSize="10sp" />
+                    android:textSize="@dimen/size_10" />
 
                 <Button
                     style="@android:style/Widget.Holo.Button"
-                    android:layout_width="55dp"
-                    android:layout_height="70dp"
+                    android:layout_width="@dimen/dimen_55"
+                    android:layout_height="@dimen/dimen_70"
                     android:background="@drawable/backgroud_16"
                     android:onClick="addRowPointPlayer1"
-                    android:text="+point R.O.W."
+                    android:text="@string/point_r_o_w"
                     android:textAppearance="@android:style/TextAppearance.DeviceDefault.Widget.ActionBar.Menu"
                     android:textColor="@android:color/white"
-                    android:textSize="10sp" />
+                    android:textSize="@dimen/size_10" />
 
 
             </LinearLayout>
 
 
             <LinearLayout
-                android:layout_width="120dp"
+                android:layout_width="@dimen/dimen_120"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="@dimen/dimen_25"
                 android:orientation="horizontal">
 
 
                 <Button
-                    android:layout_width="32dp"
-                    android:layout_height="27dp"
-                    android:layout_marginRight="5dp"
+                    android:layout_width="@dimen/dimen_32"
+                    android:layout_height="@dimen/dimen_27"
+                    android:layout_marginRight="@dimen/dimen_5"
                     android:layout_weight="1"
                     android:background="@drawable/yellow_1"
                     android:onClick="yellowCardStat1" />
 
                 <Button
-                    android:layout_width="32dp"
-                    android:layout_height="27dp"
-                    android:layout_marginRight="5dp"
+                    android:layout_width="@dimen/dimen_32"
+                    android:layout_height="@dimen/dimen_27"
+                    android:layout_marginRight="@dimen/dimen_5"
                     android:layout_weight="1"
                     android:background="@drawable/black_1"
                     android:onClick="declareWinnerPlayer2" />
 
                 <Button
-                    android:layout_width="32dp"
-                    android:layout_height="27dp"
+                    android:layout_width="@dimen/dimen_32"
+                    android:layout_height="@dimen/dimen_27"
                     android:layout_weight="1"
                     android:background="@drawable/red_1"
                     android:onClick="addRedCardPointPlayer2"
@@ -204,7 +209,7 @@
 
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
@@ -213,14 +218,14 @@
             <Button
                 android:id="@+id/player_2_title"
                 style="@android:style/Widget.Holo.Button.Borderless"
-                android:layout_width="120dp"
-                android:layout_height="70dp"
-                android:layout_marginTop="35dp"
+                android:layout_width="@dimen/dimen_120"
+                android:layout_height="@dimen/dimen_70"
+                android:layout_marginTop="@dimen/dimen_35"
                 android:fontFamily="serif"
                 android:onClick="declareWinnerPlayer2"
-                android:text="Player 2"
+                android:text="@string/player_2"
                 android:textColor="@android:color/background_light"
-                android:textSize="20sp"
+                android:textSize="@dimen/size_20"
                 android:textStyle="bold" />
 
             <TextView
@@ -228,79 +233,77 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
-                android:text="0"
+                android:text="@string/_0"
                 android:textColor="@android:color/holo_green_light"
-                android:textSize="70sp" />
+                android:textSize="@dimen/size_70" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="@dimen/dimen_20"
                 android:orientation="horizontal">
 
                 <Button
-                    android:layout_width="55dp"
-                    android:layout_height="70dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_width="@dimen/dimen_55"
+                    android:layout_height="@dimen/size_70"
+                    android:layout_marginRight="@dimen/dimen_10"
                     android:background="@drawable/background_12"
                     android:onClick="addTouchPointPlayer2"
-                    android:text="+point Touch"
+                    android:text="@string/point_touch"
                     android:textAppearance="@android:style/TextAppearance.DeviceDefault.Widget.ActionBar.Menu"
                     android:textColor="@android:color/white"
-                    android:textSize="10sp" />
+                    android:textSize="@dimen/size_10" />
 
 
                 <Button
-                    android:layout_width="55dp"
-                    android:layout_height="70dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_width="@dimen/dimen_55"
+                    android:layout_height="@dimen/dimen_70"
+                    android:layout_marginRight="@dimen/dimen_10"
                     android:background="@drawable/backgroud_16"
                     android:onClick="addRowPointPlayer2"
-                    android:text="+point R.O.W."
+                    android:text="@string/point_r_o_w"
                     android:textColor="@android:color/white"
-                    android:textSize="10sp" />
+                    android:textSize="@dimen/size_10" />
 
 
             </LinearLayout>
 
 
             <LinearLayout
-                android:layout_width="120dp"
+                android:layout_width="@dimen/dimen_120"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="@dimen/dimen_25"
                 android:orientation="horizontal">
 
 
                 <Button
 
-                    android:layout_width="32dp"
-                    android:layout_height="27dp"
-                    android:layout_marginRight="5dp"
+                    android:layout_width="@dimen/dimen_32"
+                    android:layout_height="@dimen/dimen_27"
+                    android:layout_marginRight="@dimen/dimen_5"
                     android:layout_weight="1"
                     android:background="@drawable/yellow_1"
                     android:onClick="yellowCardStatPlayer2" />
 
                 <Button
 
-                    android:layout_width="32dp"
-                    android:layout_height="27dp"
-                    android:layout_marginRight="5dp"
+                    android:layout_width="@dimen/dimen_32"
+                    android:layout_height="@dimen/dimen_27"
+                    android:layout_marginRight="@dimen/dimen_5"
                     android:layout_weight="1"
                     android:background="@drawable/black_1"
                     android:onClick="declareWinnerPlayer1" />
 
                 <Button
 
-                    android:layout_width="32dp"
-                    android:layout_height="25dp"
+                    android:layout_width="@dimen/dimen_32"
+                    android:layout_height="@dimen/dimen_27"
                     android:layout_marginRight="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/red_1"
                     android:onClick="addRedCardPointPlayer1" />
 
-
             </LinearLayout>
-
 
         </LinearLayout>
 
@@ -308,14 +311,18 @@
     </LinearLayout>
 
 
+<!--end page 1-->
+
+    <!--page 2-->
+
     <RelativeLayout
 
         android:id="@+id/statistics"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
-        android:layout_marginLeft="@dimen/left_right"
-        android:layout_marginRight="@dimen/left_right"
-        android:layout_marginTop="75dp"
+        android:layout_height="@dimen/dimen_350"
+        android:layout_marginLeft="@dimen/dimen_20"
+        android:layout_marginRight="@dimen/dimen_20"
+        android:layout_marginTop="@dimen/dimen_75"
         android:background="@drawable/background_23"
         android:visibility="invisible">
 
@@ -324,27 +331,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="59dp"
+            android:layout_marginTop="@dimen/dimen_59"
             android:text="@string/touch_point"
             android:textColor="@android:color/white"
-            android:textSize="15sp"
+            android:textSize="@dimen/size_15"
             android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="107dp"
-            android:text="R.O.W. Point"
+            android:layout_marginTop="@dimen/dimen_107"
+            android:text="@string/r_o_w_point"
             android:textColor="@android:color/white"
-            android:textSize="15sp"
+            android:textSize="@dimen/size_15"
             android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="158dp"
+            android:layout_marginTop="@dimen/dimen_158"
             android:text="Red Card"
             android:textColor="@android:color/white"
             android:textStyle="bold" />
@@ -353,7 +360,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="206dp"
+            android:layout_marginTop="@dimen/dimen_206"
             android:text="Yellow Card"
             android:textColor="@android:color/white"
             android:textStyle="bold" />
@@ -362,7 +369,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="255dp"
+            android:layout_marginTop="@dimen/dimen_255"
             android:text="Black Card"
             android:textColor="@android:color/white"
             android:textStyle="bold" />
@@ -376,9 +383,9 @@
 
             <LinearLayout
                 android:id="@+id/statistics_player_1_layout"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/zero"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="@dimen/dimen_10"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
@@ -387,10 +394,10 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
-                    android:text="Player 1"
+                    android:text="@string/player_1"
 
                     android:textColor="@android:color/white"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/size_20"
                     android:textStyle="bold" />
 
                 <TextView
@@ -398,16 +405,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="3dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="20dp"
-                    android:text="0"
+                    android:layout_marginLeft="@dimen/dimen_8"
+                    android:layout_marginTop="@dimen/dimen_20"
+                    android:text="@string/_0"
                     android:textColor="@android:color/white"
-                    android:textSize="15sp" />
+                    android:textSize="@dimen/size_15" />
 
                 <View
                     android:id="@+id/bar_1"
-                    android:layout_width="160dp"
-                    android:layout_height="10dp"
+                    android:layout_width="@dimen/dimen_160"
+                    android:layout_height="@dimen/dimen_10"
                     android:background="@android:color/holo_green_light">
 
                 </View>
@@ -416,17 +423,17 @@
                     android:id="@+id/row_point_statistics"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="3dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="15dp"
-                    android:text="0"
+                    android:layout_marginBottom="@dimen/dimen_3"
+                    android:layout_marginLeft="@dimen/dimen_8"
+                    android:layout_marginTop="@dimen/dimen_15"
+                    android:text="@string/_0"
                     android:textColor="@android:color/white"
-                    android:textSize="15sp" />
+                    android:textSize="@dimen/size_15" />
 
                 <View
                     android:id="@+id/bar_2"
-                    android:layout_width="160dp"
-                    android:layout_height="10dp"
+                    android:layout_width="@dimen/dimen_160"
+                    android:layout_height="@dimen/dimen_10"
                     android:background="@android:color/holo_orange_dark">
 
                 </View>
@@ -436,18 +443,18 @@
                     android:id="@+id/red_card_point_statistics"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="3dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="15dp"
-                    android:text="0"
+                    android:layout_marginBottom="@dimen/dimen_3"
+                    android:layout_marginLeft="@dimen/dimen_8"
+                    android:layout_marginTop="@dimen/dimen_15"
+                    android:text="@string/_0"
                     android:textColor="@android:color/white"
-                    android:textSize="15sp" />
+                    android:textSize="@dimen/size_15" />
 
 
                 <View
                     android:id="@+id/bar_3"
-                    android:layout_width="160dp"
-                    android:layout_height="10dp"
+                    android:layout_width="@dimen/dimen_160"
+                    android:layout_height="@dimen/dimen_10"
                     android:background="@android:color/holo_red_light">
 
                 </View>
@@ -457,18 +464,18 @@
                     android:id="@+id/yellow_card_statistics"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="3dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="15dp"
-                    android:text="0"
+                    android:layout_marginBottom="@dimen/dimen_3"
+                    android:layout_marginLeft="@dimen/dimen_8"
+                    android:layout_marginTop="@dimen/dimen_15"
+                    android:text="@string/_0"
                     android:textColor="@android:color/white"
-                    android:textSize="15sp" />
+                    android:textSize="@dimen/size_15" />
 
 
                 <View
                     android:id="@+id/bar_4"
-                    android:layout_width="160dp"
-                    android:layout_height="10dp"
+                    android:layout_width="@dimen/dimen_160"
+                    android:layout_height="@dimen/dimen_10"
                     android:background="@android:color/holo_orange_light">
 
                 </View>
@@ -478,17 +485,17 @@
                     android:id="@+id/black_card_statistics"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="3dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="15dp"
-                    android:text="0"
+                    android:layout_marginBottom="@dimen/dimen_3"
+                    android:layout_marginLeft="@dimen/dimen_8"
+                    android:layout_marginTop="@dimen/dimen_15"
+                    android:text="@string/_0"
                     android:textColor="@android:color/white"
-                    android:textSize="15sp" />
+                    android:textSize="@dimen/size_15" />
 
                 <View
                     android:id="@+id/bar_5"
-                    android:layout_width="160dp"
-                    android:layout_height="10dp"
+                    android:layout_width="@dimen/dimen_160"
+                    android:layout_height="@dimen/dimen_10"
                     android:background="@android:color/black">
 
                 </View>
@@ -497,12 +504,11 @@
 
             <LinearLayout
                 android:id="@+id/player_2_layout"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/zero"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginLeft="@dimen/dimen_5"
+                android:layout_marginRight="@dimen/dimen_10"
+                android:layout_marginTop="@dimen/dimen_10"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
@@ -511,9 +517,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Player 2"
+                    android:text="@string/player_2"
                     android:textColor="@android:color/white"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/size_20"
                     android:textStyle="bold" />
 
 
@@ -522,20 +528,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
-
-                    android:layout_marginBottom="3dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginTop="20dp"
-                    android:text="0"
+                    android:layout_marginBottom="@dimen/dimen_3"
+                    android:layout_marginRight="@dimen/dimen_8"
+                    android:layout_marginTop="@dimen/dimen_20"
+                    android:text="@string/_0"
                     android:textColor="@android:color/white"
-                    android:textSize="15sp" />
+                    android:textSize="@dimen/size_15" />
 
 
                 <View
                     android:id="@+id/bar_1_playe2"
-                    android:layout_width="160dp"
-                    android:layout_height="10dp"
-
+                    android:layout_width="@dimen/dimen_160"
+                    android:layout_height="@dimen/dimen_10"
                     android:background="@android:color/holo_green_light">
 
                 </View>
@@ -545,19 +549,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
-                    android:layout_marginBottom="3dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginTop="15dp"
-                    android:text="0"
+                    android:layout_marginBottom="@dimen/dimen_3"
+                    android:layout_marginRight="@dimen/dimen_8"
+                    android:layout_marginTop="@dimen/dimen_15"
+                    android:text="@string/_0"
                     android:textColor="@android:color/white"
-                    android:textSize="15sp" />
+                    android:textSize="@dimen/size_15" />
 
 
                 <View
                     android:id="@+id/bar_2_player2"
                     android:layout_width="160dp"
-                    android:layout_height="10dp"
-
+                    android:layout_height="@dimen/dimen_10"
                     android:background="@android:color/holo_orange_dark">
 
                 </View>
@@ -568,18 +571,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
-                    android:layout_marginBottom="3dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginTop="15dp"
-                    android:text="0"
+                    android:layout_marginBottom="@dimen/dimen_3"
+                    android:layout_marginRight="@dimen/dimen_8"
+                    android:layout_marginTop="@dimen/dimen_15"
+                    android:text="@string/_0"
                     android:textColor="@android:color/white"
-                    android:textSize="15sp" />
+                    android:textSize="@dimen/size_15" />
 
                 <View
                     android:id="@+id/bar_3_player3"
-                    android:layout_width="160dp"
-                    android:layout_height="10dp"
-
+                    android:layout_width="@dimen/dimen_160"
+                    android:layout_height="@dimen/dimen_10"
                     android:background="@android:color/holo_red_light">
 
                 </View>
@@ -589,18 +591,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
-                    android:layout_marginBottom="3dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginTop="15dp"
-                    android:text="0"
+                    android:layout_marginBottom="@dimen/dimen_3"
+                    android:layout_marginRight="@dimen/dimen_8"
+                    android:layout_marginTop="@dimen/dimen_15"
+                    android:text="@string/_0"
                     android:textColor="@android:color/white"
-                    android:textSize="15sp" />
+                    android:textSize="@dimen/size_15" />
 
                 <View
                     android:id="@+id/bar_4_player4"
-                    android:layout_width="160dp"
-                    android:layout_height="10dp"
-
+                    android:layout_width="@dimen/dimen_160"
+                    android:layout_height="@dimen/dimen_10"
                     android:background="@android:color/holo_orange_light">
 
                 </View>
@@ -610,17 +611,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
-                    android:layout_marginBottom="3dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginTop="15dp"
-                    android:text="0"
+                    android:layout_marginBottom="@dimen/dimen_3"
+                    android:layout_marginRight="@dimen/dimen_8"
+                    android:layout_marginTop="@dimen/dimen_15"
+                    android:text="@string/_0"
                     android:textColor="@android:color/white"
-                    android:textSize="15sp" />
+                    android:textSize="@dimen/size_15" />
 
                 <View
                     android:id="@+id/bar_5_player5"
-                    android:layout_width="160dp"
-                    android:layout_height="10dp"
+                    android:layout_width="@dimen/dimen_160"
+                    android:layout_height="@dimen/dimen_10"
                     android:background="@android:color/black">
 
                 </View>
@@ -632,27 +633,32 @@
 
     </RelativeLayout>
 
+    <!--end page 2-->
+
+    <!--page 3-->
+
     <ScrollView
+        android:elevation="@dimen/dimen_1"
         android:id="@+id/help_page"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/background_23"
-        android:paddingBottom="120dp"
+        android:paddingBottom="@dimen/dimen_120"
         android:visibility="invisible">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingTop="@dimen/left_right">
+            android:paddingBottom="@dimen/dimen_20">
 
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/header_text"
-                android:layout_marginLeft="@dimen/left_right"
-                android:layout_marginRight="@dimen/left_right"
+                android:layout_marginBottom="@dimen/dimen_10"
+                android:layout_marginLeft="@dimen/dimen_20"
+                android:layout_marginRight="@dimen/dimen_20"
                 android:gravity="center"
                 android:text="@string/header_1"
                 android:textColor="@android:color/white" />
@@ -661,16 +667,16 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/left_right"
-                android:layout_marginRight="@dimen/left_right"
+                android:layout_marginLeft="@dimen/dimen_20"
+                android:layout_marginRight="@dimen/dimen_20"
                 android:text="@string/help_text_1" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/header_text"
-                android:layout_marginLeft="@dimen/left_right"
-                android:layout_marginRight="@dimen/left_right"
+                android:layout_marginBottom="@dimen/dimen_10"
+                android:layout_marginLeft="@dimen/dimen_20"
+                android:layout_marginRight="@dimen/dimen_20"
                 android:gravity="center"
                 android:text="@string/header_2"
                 android:textColor="@android:color/white" />
@@ -679,33 +685,33 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/header_text"
-                android:layout_marginLeft="@dimen/left_right"
-                android:layout_marginRight="@dimen/left_right"
+                android:layout_marginBottom="@dimen/dimen_10"
+                android:layout_marginLeft="@dimen/dimen_20"
+                android:layout_marginRight="@dimen/dimen_20"
                 android:text="@string/help_text_2" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/header_text"
-                android:layout_marginLeft="@dimen/left_right"
-                android:layout_marginRight="@dimen/left_right"
+                android:layout_marginBottom="@dimen/dimen_10"
+                android:layout_marginLeft="@dimen/dimen_20"
+                android:layout_marginRight="@dimen/dimen_20"
                 android:text="@string/help_text_3" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/header_text"
-                android:layout_marginLeft="@dimen/left_right"
-                android:layout_marginRight="@dimen/left_right"
+                android:layout_marginBottom="@dimen/dimen_20"
+                android:layout_marginLeft="@dimen/dimen_20"
+                android:layout_marginRight="@dimen/dimen_20"
                 android:text="@string/help_text_4" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/header_text"
-                android:layout_marginLeft="@dimen/left_right"
-                android:layout_marginRight="@dimen/left_right"
+                android:layout_marginBottom="@dimen/dimen_10"
+                android:layout_marginLeft="@dimen/dimen_20"
+                android:layout_marginRight="@dimen/dimen_20"
                 android:gravity="center"
                 android:text="@string/header_3"
                 android:textColor="@android:color/white" />
@@ -713,33 +719,33 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/header_text"
-                android:layout_marginLeft="@dimen/left_right"
-                android:layout_marginRight="@dimen/left_right"
+                android:layout_marginBottom="@dimen/dimen_10"
+                android:layout_marginLeft="@dimen/dimen_20"
+                android:layout_marginRight="@dimen/dimen_20"
                 android:text="@string/help_text_5" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/header_text"
-                android:layout_marginLeft="@dimen/left_right"
-                android:layout_marginRight="@dimen/left_right"
+                android:layout_marginBottom="@dimen/dimen_10"
+                android:layout_marginLeft="@dimen/dimen_20"
+                android:layout_marginRight="@dimen/dimen_20"
                 android:text="@string/text_6" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/header_text"
-                android:layout_marginLeft="@dimen/left_right"
-                android:layout_marginRight="@dimen/left_right"
+                android:layout_marginBottom="@dimen/dimen_10"
+                android:layout_marginLeft="@dimen/dimen_20"
+                android:layout_marginRight="@dimen/dimen_20"
                 android:text="@string/text_7" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/header_text"
-                android:layout_marginLeft="@dimen/left_right"
-                android:layout_marginRight="@dimen/left_right"
+                android:layout_marginBottom="@dimen/dimen_10"
+                android:layout_marginLeft="@dimen/dimen_20"
+                android:layout_marginRight="@dimen/dimen_20"
                 android:gravity="center"
                 android:text="@string/header_4"
                 android:textColor="@android:color/white" />
@@ -747,25 +753,25 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/header_text"
-                android:layout_marginLeft="@dimen/left_right"
-                android:layout_marginRight="@dimen/left_right"
+                android:layout_marginBottom="@dimen/dimen_10"
+                android:layout_marginLeft="@dimen/dimen_20"
+                android:layout_marginRight="@dimen/dimen_20"
                 android:text="@string/help_text_8" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/header_text"
-                android:layout_marginLeft="@dimen/left_right"
-                android:layout_marginRight="@dimen/left_right"
+                android:layout_marginBottom="@dimen/dimen_10"
+                android:layout_marginLeft="@dimen/dimen_20"
+                android:layout_marginRight="@dimen/dimen_20"
                 android:text="@string/help_text_9" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/header_text"
-                android:layout_marginLeft="@dimen/left_right"
-                android:layout_marginRight="@dimen/left_right"
+                android:layout_marginBottom="@dimen/dimen_10"
+                android:layout_marginLeft="@dimen/dimen_20"
+                android:layout_marginRight="@dimen/dimen_20"
                 android:gravity="center"
                 android:text="@string/header_5"
                 android:textColor="@android:color/white" />
@@ -773,17 +779,17 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/header_text"
-                android:layout_marginLeft="@dimen/left_right"
-                android:layout_marginRight="@dimen/left_right"
+                android:layout_marginBottom="@dimen/dimen_10"
+                android:layout_marginLeft="@dimen/dimen_20"
+                android:layout_marginRight="@dimen/dimen_20"
                 android:text="@string/help_text_10" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/header_text"
-                android:layout_marginLeft="@dimen/left_right"
-                android:layout_marginRight="@dimen/left_right"
+                android:layout_marginBottom="@dimen/dimen_10"
+                android:layout_marginLeft="@dimen/dimen_20"
+                android:layout_marginRight="@dimen/dimen_20"
                 android:gravity="center"
                 android:text="@string/header_6"
                 android:textColor="@android:color/white" />
@@ -791,33 +797,33 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/header_text"
-                android:layout_marginLeft="@dimen/left_right"
-                android:layout_marginRight="@dimen/left_right"
+                android:layout_marginBottom="@dimen/dimen_10"
+                android:layout_marginLeft="@dimen/dimen_20"
+                android:layout_marginRight="@dimen/dimen_20"
                 android:text="@string/help_text_11" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/header_text"
-                android:layout_marginLeft="@dimen/left_right"
-                android:layout_marginRight="@dimen/left_right"
+                android:layout_marginBottom="@dimen/dimen_10"
+                android:layout_marginLeft="@dimen/dimen_20"
+                android:layout_marginRight="@dimen/dimen_20"
                 android:text="@string/help_text_12" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/header_text"
-                android:layout_marginLeft="@dimen/left_right"
-                android:layout_marginRight="@dimen/left_right"
+                android:layout_marginBottom="@dimen/dimen_10"
+                android:layout_marginLeft="@dimen/dimen_20"
+                android:layout_marginRight="@dimen/dimen_20"
                 android:text="@string/help_text_13" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/header_text"
-                android:layout_marginLeft="@dimen/left_right"
-                android:layout_marginRight="@dimen/left_right"
+                android:layout_marginBottom="@dimen/dimen_10"
+                android:layout_marginLeft="@dimen/dimen_20"
+                android:layout_marginRight="@dimen/dimen_20"
                 android:gravity="center"
                 android:text="@string/header_7"
                 android:textColor="@android:color/white" />
@@ -825,9 +831,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/header_text"
-                android:layout_marginLeft="@dimen/left_right"
-                android:layout_marginRight="@dimen/left_right"
+                android:layout_marginBottom="@dimen/dimen_10"
+                android:layout_marginLeft="@dimen/dimen_20"
+                android:layout_marginRight="@dimen/dimen_20"
                 android:text="@string/help_text_14" />
 
 
@@ -836,5 +842,6 @@
 
     </ScrollView>
 
+<!--end page 3-->
 
 </RelativeLayout>

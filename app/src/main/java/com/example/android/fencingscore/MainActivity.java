@@ -1,14 +1,32 @@
 package com.example.android.fencingscore;
 
 import android.graphics.Color;
+import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    int quantity = 0;
+    private static final
+    String  MY_TOTAL_SCORE_1 =  "SCORE_1";
+    String  MY_TOTAL_SCORE_2 = "SCORE_2";
+    String  MY_TOUCH_POINT_1 = "TOUCH_1";
+    String MY_TOUCH_POINT_2 = "TOUCH_2";
+    String My_ROW_POINT_1 = "ROW_1";
+    String MY_ROW_POINT_2 = "ROW_2";
+    String MY_RED_1 = "RED_1";
+    String MY_RED_2 = "RED_2";
+    String MY_YELLOW_1 = "YELLOW_1";
+    String MY_YELLOW_2 = "YELLOW_2";
+    String MY_BLACK_1 = "BLACK_1";
+    String MY_BLACK_2 = "BLACK_2";
+    String MY_CURRENT_PAGE = "CURRENT_PAGE";
+
+
+    int quantity1 = 0;
     int quantity2 = 0;
 
     int sumTouchPoint1 = 0;
@@ -22,10 +40,70 @@ public class MainActivity extends AppCompatActivity {
 
 
     int sumYellowCard1 = 0;
-    int sumYellowCrad2 = 0;
+    int sumYellowCard2 = 0;
 
     int sumBlackCard1 = 0;
     int sumBlackCard2 = 0;
+
+    int currentPage;
+
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        quantity1=savedInstanceState.getInt(MY_TOTAL_SCORE_1);
+        quantity2=savedInstanceState.getInt(MY_TOTAL_SCORE_2);
+        sumTouchPoint1=savedInstanceState.getInt(MY_TOUCH_POINT_1);
+        sumTouchPoint2=savedInstanceState.getInt(MY_TOUCH_POINT_2);
+        sumRowPoint1=savedInstanceState.getInt(My_ROW_POINT_1);
+        sumRowPoint2=savedInstanceState.getInt(MY_ROW_POINT_2);
+        sumRedCardPoint1=savedInstanceState.getInt(MY_RED_1);
+        sumRedCardPoint2=savedInstanceState.getInt(MY_RED_2);
+        sumYellowCard1=savedInstanceState.getInt(MY_YELLOW_1);
+        sumYellowCard2=savedInstanceState.getInt(MY_YELLOW_2);
+        sumBlackCard1=savedInstanceState.getInt(MY_BLACK_1);
+        sumBlackCard2=savedInstanceState.getInt(MY_BLACK_2);
+        currentPage = savedInstanceState.getInt(MY_CURRENT_PAGE);
+
+        displayScorePlayer1(quantity1);
+        displayScorePlayer2(quantity2);
+        disPlayTouchPointStat1(sumTouchPoint1);
+        disPlayTouchPointStat2(sumTouchPoint2);
+        disPlayRowPointStat1(sumRowPoint1);
+        disPlayRowPointStat2(sumRowPoint2);
+        displayRedCardPoint1(sumRedCardPoint1);
+        displayRedCardPoint2(sumRedCardPoint2);
+        displayYellowCard1(sumYellowCard1);
+        displayYellowCard2(sumYellowCard2);
+        displayBlackCard1(sumBlackCard1);
+        displayBlackCard2(sumBlackCard2);
+
+        saveCurrentPage();
+    }
+
+
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putInt("SCORE_1", quantity1 );
+        outState.putInt("SCORE_2", quantity2 );
+        outState.putInt("TOUCH_1", sumTouchPoint1 );
+        outState.putInt("TOUCH_2", sumTouchPoint2);
+        outState.putInt("ROW_1", sumRowPoint1);
+        outState.putInt("ROW_2", sumRowPoint2);
+        outState.putInt("RED_1", sumRedCardPoint1);
+        outState.putInt("RED_2", sumRedCardPoint2);
+        outState.putInt("YELLOW_1", sumYellowCard1);
+        outState.putInt("YELLOW_2", sumYellowCard2);
+        outState.putInt("BLACK_1", sumBlackCard1);
+        outState.putInt("BLACK_2", sumBlackCard2);
+        outState.putInt("CURRENT_PAGE",currentPage);
+
+        super.onSaveInstanceState(outState);
+
+    }
+
 
 
     @Override
@@ -35,7 +113,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    // the following is the method used to calculate the statistics for player 1
+
+// the following is the method used to calculate the statistics for player 1
 
 
     /**
@@ -122,8 +201,8 @@ public class MainActivity extends AppCompatActivity {
      */
     public void yellowCardStatPlayer2(View view) {
 
-        sumYellowCrad2 = sumYellowCrad2 + 1;
-        displayYellowCard2(sumYellowCrad2);
+        sumYellowCard2 = sumYellowCard2 + 1;
+        displayYellowCard2(sumYellowCard2);
     }
 
     /**
@@ -145,8 +224,13 @@ public class MainActivity extends AppCompatActivity {
      */
     public void addTouchPointPlayer1(View view) {
 
-        quantity = quantity + 1;
-        displayScorePlayer1(quantity);
+        if (quantity1 == 15) {
+
+            displayWinnerPlayer1("player 1 " + ("Winner"));
+            return;
+        }
+        quantity1 = quantity1 + 1;
+        displayScorePlayer1(quantity1);
         touchPointStatPlayer1(view);
     }
 
@@ -156,8 +240,13 @@ public class MainActivity extends AppCompatActivity {
      */
     public void addRowPointPlayer1(View view) {
 
-        quantity = quantity + 1;
-        displayScorePlayer1(quantity);
+        if (quantity1 == 15) {
+
+            displayWinnerPlayer1("player 1 " + ("Winner"));
+            return;
+       }
+        quantity1 = quantity1 + 1;
+        displayScorePlayer1(quantity1);
         rowPointStatPlayer1(view);
     }
 
@@ -166,8 +255,13 @@ public class MainActivity extends AppCompatActivity {
      */
     public void addRedCardPointPlayer1(View view) {
 
-        quantity = quantity + 1;
-        displayScorePlayer1(quantity);
+        if (quantity1 == 15) {
+
+            displayWinnerPlayer1("player 1 " + ("Winner"));
+           return;
+        }
+        quantity1 = quantity1 + 1;
+        displayScorePlayer1(quantity1);
         redCardPointStatPlayer2(view);
     }
 
@@ -177,6 +271,12 @@ public class MainActivity extends AppCompatActivity {
      * this method is called when Touch Point Button Player # 2 is clicked
      */
     public void addTouchPointPlayer2(View view) {
+
+        if (quantity2 == 15) {
+
+            displayWinnerPlayer2("player 2 " + ("Winner"));
+            return;
+        }
 
         quantity2 = quantity2 + 1;
         displayScorePlayer2(quantity2);
@@ -189,6 +289,11 @@ public class MainActivity extends AppCompatActivity {
      */
     public void addRowPointPlayer2(View view) {
 
+        if (quantity2 == 15) {
+
+            displayWinnerPlayer2("player 2 " + ("Winner"));
+            return;
+        }
         quantity2 = quantity2 + 1;
         displayScorePlayer2(quantity2);
         rowPointStatPlayer2(view);
@@ -200,6 +305,11 @@ public class MainActivity extends AppCompatActivity {
      */
     public void addRedCardPointPlayer2(View view) {
 
+        if (quantity2 == 15) {
+
+            displayWinnerPlayer2("player 2 " + ("Winner"));
+            return;
+        }
         quantity2 = quantity2 + 1;
         displayScorePlayer2(quantity2);
         redCardPointStat1(view);
@@ -214,9 +324,9 @@ public class MainActivity extends AppCompatActivity {
      */
     public void resetAllScores(View reset) {
 
-        quantity = 0;
+        quantity1 = 0;
         quantity2 = 0;
-        displayScorePlayer1(quantity);
+        displayScorePlayer1(quantity1);
         displayScorePlayer2(quantity2);
         clearWinnerPlayer1("Player 1");
         clearWinnerPlayer2("Player 2");
@@ -430,25 +540,57 @@ public class MainActivity extends AppCompatActivity {
         View statistics = (View) findViewById(R.id.statistics);
         statistics.setVisibility(View.VISIBLE);
 
-    }
+        View helpPage = (View) findViewById(R.id.help_page);
+        helpPage.setVisibility(View.INVISIBLE);
+        currentPage =1;
 
+    }
     public void displayHelpPage(View view) {
         View helpPage = (View) findViewById(R.id.help_page);
         helpPage.setVisibility(View.VISIBLE);
 
+        LinearLayout threeButtons = findViewById(R.id.three_buttons_layout);
+        threeButtons.bringToFront();
+
+        currentPage = 2;
     }
+
 
     /**
      * this method hide the View Statistics
      */
 
-    public void hideStatistics(View view) {
+    public void displayHome(View view) {
 
         View statistics = (View) findViewById(R.id.statistics);
         statistics.setVisibility(View.INVISIBLE);
 
         View helpPage = (View) findViewById(R.id.help_page);
         helpPage.setVisibility((View.INVISIBLE));
+
+        currentPage=3;
+
     }
 
+    //this methods to maintain the current page when the device rotate
+
+    /** method is called to maintain the help page and statistics page when the device rotate
+     *
+     */
+    private void saveCurrentPage (){
+        View savePage = new View (this);
+
+        if (currentPage==1) {
+        }  disPlayStatistics(savePage);
+
+
+        if(currentPage==2){
+            displayHelpPage(savePage);
+        }
+
+        if(currentPage==3){
+            displayHome(savePage);
+        }
+
+    }
 }
